@@ -4,35 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quotation Builder</title>
+  <title>Quotation</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
 </head>
 
 <body>
-
   <header>
     <div class="header-container">
-      <div class="logo-section">
-        <label for="logo">Logo:</label>
-        <!-- Add this inside the header section -->
-        <img id="logoDisplay" src="" alt="Company Logo">
-        <input type="file" id="logo" accept="image/*" onchange="cacheData('logo', this.files[0])">
+      <div class="company-details-section">
+        <div>
+          <label for="companyName">Company:</label>
+          <input type="text" id="companyName" oninput="cacheData('companyName', this.value)">
+        </div>
+
+        <div class="header-address">
+          <label for="companyAddress">Address:</label>
+          <textarea id="companyAddress" rows="4" oninput="cacheData('companyAddress', this.value)"></textarea>
+        </div>
+
+        <div>
+          <label for="companyMobile">Mobile:</label>
+          <input type="tel" id="companyMobile" oninput="cacheData('companyMobile', this.value)">
+        </div>
+
+        <div>
+          <label for="companyFax">Fax / Ph:</label>
+          <input type="tel" id="companyFax" oninput="cacheData('companyFax', this.value)">
+        </div>
       </div>
 
-      <div class="company-details-section">
-        <label for="companyName">Company Name:</label>
-        <input type="text" id="companyName" oninput="cacheData('companyName', this.value)">
-
-        <label for="companyAddress">Address:</label>
-        <textarea id="companyAddress" rows="4" oninput="cacheData('companyAddress', this.value)"></textarea>
-
-        <label for="companyMobile">Mobile:</label>
-        <input type="tel" id="companyMobile" oninput="cacheData('companyMobile', this.value)">
-
-        <label for="companyFax">Fax / Ph:</label>
-        <input type="tel" id="companyFax" oninput="cacheData('companyFax', this.value)">
+      <div class="logo-section">
+        <img id="logoDisplay" src="logo_holder.png" alt="Company Logo" onclick="chooseLogo()" width="150" height="150">
       </div>
     </div>
     <hr class="rounded">
@@ -43,12 +46,12 @@
 
       <div class="quotation-detail">
         <label for="date">Date:</label>
-        <input type="date" id="date" oninput="cacheData('date', this.value)">
+        <input type="date" id="date">
       </div>
 
       <div class="quotation-detail">
         <label for="from">FROM:</label>
-        <div id="from" class="companyName"></div>
+        <input type="text" id="fromCompany" oninput="cacheData('fromCompany', this.value)">
       </div>
 
       <div class="quotation-detail">
@@ -65,29 +68,25 @@
         <label for="attn">ATTN:</label>
         <input type="text" id="attn" oninput="cacheData('attn', this.value)">
       </div>
-
-      <!-- Add caching functionality for other fields like from, to, re, ATTN -->
     </div>
 
     <hr class="solid">
 
     <div id="positions">
     </div>
-    <button onclick="addQuotationPosition()">Add Position</button>
 
-    <h3>Summary</h3>
-    <div>
-      <!-- Display quotation positions with description and cost -->
+    <div id="summary" class="summary">
+        <h3>Summary</h3>
+        <p>Total Cost: $<span id="totalCost">0.00</span></p>
+        <p>GST (10%): $<span id="gst">0.00</span></p>
+        <p>Grand Total: $<span id="grandTotal">0.00</span></p>
+      
+        <div>
+            <button onclick="addQuotationPosition()">Add Position</button>
+            <button onclick="printQuotation()">Print Quote</button>
+        </div>
     </div>
-    <p>Total Cost: $<span id="totalCost">0.00</span></p>
-    <p>GST (10%): $<span id="gst">0.00</span></p>
-    <p>Grand Total: $<span id="grandTotal">0.00</span></p>
-
-    <button onclick="exportToPDF(new jsPDF())">Export to PDF</button>
-    <button onclick="printQuotation()">Print Quote</button>
-
   </main>
-
 
   <hr class="solid">
 

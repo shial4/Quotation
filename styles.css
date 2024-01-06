@@ -1,26 +1,84 @@
 body {
   font-family: Arial, sans-serif;
-}
-
-header {
-  text-align: center;
+  margin: 20px;
+  padding: 20px;
 }
 
 .header-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin: 0 20px; /* Adjust the margin as needed */
+}
+
+.header-address {
+  display: flex;
+  align-items: top;
 }
 
 .logo-section {
-  margin-right: 20px; /* Adjust the spacing between the logo and company details */
+  margin-right: 20px;
 }
 
 .company-details-section {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
-/* Add your existing CSS styles below this line */
+.company-details-section div {
+  margin-bottom: 10px; /* Add margin between items */
+}
+
+/* Style for the label in company-details-section */
+.company-details-section label {
+  align-self: flex-start; /* Align label to the start of its container */
+}
+
+/* Style for the textarea in company-details-section */
+.company-details-section textarea {
+  resize: none; /* Disable textarea resizing */
+}
+
+.header-container label {
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.company-details-section label {
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.quotation-detail label {
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+#positions {
+  display: flex;
+  flex-direction: column;
+}
+
+#positions div {
+  margin-bottom: 10px; /* Add space between position items */
+}
+
+#positions input {
+  border: none;
+  background-color: transparent;
+  margin-right: 10px; /* Add space between input items */
+}
+
+#positions label {
+  margin-right: 5px;
+}
+
+#summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align to the right */
+}
 
 /* Dashed border */
 hr.dashed {
@@ -57,8 +115,46 @@ hr.rounded {
 }
 
 @media print {
-  /* Add print-specific styles here */
-  body {
-    font-family: Arial, sans-serif;
+  /* Hide the logo input and make the logo display visible */
+  #logo, .logo-section label {
+    display: none;
+  }
+
+  #logoDisplay {
+    display: block;
+  }
+
+  /* Hide labels in header-container and its subcontainers
+  .header-container label,
+  .company-details-section label,
+  .quotation-detail label {
+    display: none;
+  } */
+
+  /* Hide input borders and backgrounds in positions div */
+  #positions input {
+    border: none;
+    background-color: transparent;
+  }
+
+  /* Remove border from the company details section */
+  .company-details-section {
+    border: none;
+    padding: 0;
+  }
+
+  /* Hide print and add position buttons during printing */
+  #positions button,
+  #summary button {
+    display: none;
+  }
+
+  /* Remove text fields and textarea borders during printing */
+  input[type="text"],
+  input[type="tel"],
+  textarea,
+  input[type="date"],
+  input[type="number"] {
+    border: none;
   }
 }
