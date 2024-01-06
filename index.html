@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quotation Builder</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+
+  <header>
+    <label for="logo">Logo:</label>
+    <!-- Add this inside the header section -->
+    <img id="logoDisplay" src="" alt="Company Logo">
+    <input type="file" id="logo" accept="image/*" onchange="cacheData('logo', this.files[0])">
+
+    <div id="companyDetails">
+      <label for="companyName">Company Name:</label>
+      <input type="text" id="companyName" oninput="cacheData('companyName', this.value)">
+
+      <label for="companyAddress">Address:</label>
+      <textarea id="companyAddress" rows="4" oninput="cacheData('companyAddress', this.value)"></textarea>
+
+      <label for="companyMobile">Mobile:</label>
+      <input type="tel" id="companyMobile" oninput="cacheData('companyMobile', this.value)">
+
+      <label for="companyFax">Fax / Ph:</label>
+      <input type="tel" id="companyFax" oninput="cacheData('companyFax', this.value)">
+    </div>
+
+    <hr class="rounded">
+  </header>
+
+
+  <main>
+    <div id="quotationDetails">
+      <h2>Quotation Details</h2>
+
+      <div class="quotation-detail">
+        <label for="date">Date:</label>
+        <input type="date" id="date" oninput="cacheData('date', this.value)">
+      </div>
+
+      <div class="quotation-detail">
+        <label for="from">FROM:</label>
+        <div id="from" class="companyName"></div>
+      </div>
+
+      <div class="quotation-detail">
+        <label for="to">TO:</label>
+        <input type="text" id="to" oninput="cacheData('to', this.value)">
+      </div>
+
+      <div class="quotation-detail">
+        <label for="re">RE:</label>
+        <input type="text" id="re" oninput="cacheData('re', this.value)">
+      </div>
+
+      <div class="quotation-detail">
+        <label for="attn">ATTN:</label>
+        <input type="text" id="attn" oninput="cacheData('attn', this.value)">
+      </div>
+
+      <!-- Add caching functionality for other fields like from, to, re, ATTN -->
+    </div>
+
+    <div id="positions">
+        <h2>Quotation Positions</h2>
+    </div>
+    <button onclick="addQuotationPosition()">Add Position</button>
+
+    <h3>Summary</h3>
+    <div>
+      <!-- Display quotation positions with description and cost -->
+    </div>
+    <p>Total Cost: $<span id="totalCost">0.00</span></p>
+    <p>GST (10%): $<span id="gst">0.00</span></p>
+    <p>Grand Total: $<span id="grandTotal">0.00</span></p>
+
+    <button onclick="exportToPDF(new jsPDF())">Export to PDF</button>
+    <button onclick="printQuotation()">Print Quote</button>
+
+  </main>
+
+
+  <hr class="solid">
+
+  <footer>
+    <p id="signature">Yours sincerely, <span contenteditable="true" oninput="cacheData('creatorName', this.innerText)"></span></p>
+  </footer>
+
+</body>
+</html>

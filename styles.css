@@ -1,0 +1,41 @@
+/* Dashed border */
+hr.dashed {
+    border-top: 3px dashed #bbb;
+  }
+  
+  /* Dotted border */
+  hr.dotted {
+    border-top: 3px dotted #bbb;
+  }
+  
+  /* Solid border */
+  hr.solid {
+    border-top: 3px solid #bbb;
+  }
+  
+  /* Rounded border */
+  hr.rounded {
+    border-top: 8px solid #bbb;
+    border-radius: 5px;
+  }
+
+  #quotationDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .quotation-detail {
+    margin-bottom: 10px;
+  }
+  
+  .quotation-detail label {
+    margin-right: 5px;
+  }
+  
+  @media print {
+    /* Add print-specific styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+  }
+  
