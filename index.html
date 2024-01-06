@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,35 +9,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
 </head>
+
 <body>
 
   <header>
-    <label for="logo">Logo:</label>
-    <!-- Add this inside the header section -->
-    <img id="logoDisplay" src="" alt="Company Logo">
-    <input type="file" id="logo" accept="image/*" onchange="cacheData('logo', this.files[0])">
+    <div class="header-container">
+      <div class="logo-section">
+        <label for="logo">Logo:</label>
+        <!-- Add this inside the header section -->
+        <img id="logoDisplay" src="" alt="Company Logo">
+        <input type="file" id="logo" accept="image/*" onchange="cacheData('logo', this.files[0])">
+      </div>
 
-    <div id="companyDetails">
-      <label for="companyName">Company Name:</label>
-      <input type="text" id="companyName" oninput="cacheData('companyName', this.value)">
+      <div class="company-details-section">
+        <label for="companyName">Company Name:</label>
+        <input type="text" id="companyName" oninput="cacheData('companyName', this.value)">
 
-      <label for="companyAddress">Address:</label>
-      <textarea id="companyAddress" rows="4" oninput="cacheData('companyAddress', this.value)"></textarea>
+        <label for="companyAddress">Address:</label>
+        <textarea id="companyAddress" rows="4" oninput="cacheData('companyAddress', this.value)"></textarea>
 
-      <label for="companyMobile">Mobile:</label>
-      <input type="tel" id="companyMobile" oninput="cacheData('companyMobile', this.value)">
+        <label for="companyMobile">Mobile:</label>
+        <input type="tel" id="companyMobile" oninput="cacheData('companyMobile', this.value)">
 
-      <label for="companyFax">Fax / Ph:</label>
-      <input type="tel" id="companyFax" oninput="cacheData('companyFax', this.value)">
+        <label for="companyFax">Fax / Ph:</label>
+        <input type="tel" id="companyFax" oninput="cacheData('companyFax', this.value)">
+      </div>
     </div>
-
     <hr class="rounded">
   </header>
 
-
   <main>
     <div id="quotationDetails">
-      <h2>Quotation Details</h2>
 
       <div class="quotation-detail">
         <label for="date">Date:</label>
@@ -66,8 +69,9 @@
       <!-- Add caching functionality for other fields like from, to, re, ATTN -->
     </div>
 
+    <hr class="solid">
+
     <div id="positions">
-        <h2>Quotation Positions</h2>
     </div>
     <button onclick="addQuotationPosition()">Add Position</button>
 

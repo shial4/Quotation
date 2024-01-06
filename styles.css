@@ -1,41 +1,64 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-section {
+  margin-right: 20px; /* Adjust the spacing between the logo and company details */
+}
+
+.company-details-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add your existing CSS styles below this line */
+
 /* Dashed border */
 hr.dashed {
-    border-top: 3px dashed #bbb;
-  }
-  
-  /* Dotted border */
-  hr.dotted {
-    border-top: 3px dotted #bbb;
-  }
-  
-  /* Solid border */
-  hr.solid {
-    border-top: 3px solid #bbb;
-  }
-  
-  /* Rounded border */
-  hr.rounded {
-    border-top: 8px solid #bbb;
-    border-radius: 5px;
-  }
+  border-top: 3px dashed #bbb;
+}
 
-  #quotationDetails {
-    display: flex;
-    flex-direction: column;
+/* Dotted border */
+hr.dotted {
+  border-top: 3px dotted #bbb;
+}
+
+/* Solid border */
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+
+/* Rounded border */
+hr.rounded {
+  border-top: 8px solid #bbb;
+  border-radius: 5px;
+}
+
+#quotationDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.quotation-detail {
+  margin-bottom: 10px;
+}
+
+.quotation-detail label {
+  margin-right: 5px;
+}
+
+@media print {
+  /* Add print-specific styles here */
+  body {
+    font-family: Arial, sans-serif;
   }
-  
-  .quotation-detail {
-    margin-bottom: 10px;
-  }
-  
-  .quotation-detail label {
-    margin-right: 5px;
-  }
-  
-  @media print {
-    /* Add print-specific styles here */
-    body {
-      font-family: Arial, sans-serif;
-    }
-  }
-  
+}

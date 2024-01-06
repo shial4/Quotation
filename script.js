@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (error) {
       console.error('Error caching data:', error);
     }
-  }  
+  } 
   
   function saveToLocalStorage(key, value) {
     const cachedData = JSON.parse(localStorage.getItem('quotationData')) || {};
