@@ -18,10 +18,10 @@
           <input type="text" id="companyName" oninput="cacheData('companyName', this.value)">
         </div>
 
-        <div class="header-address">
+        <!-- <div class="header-address">
           <label for="companyAddress">Address:</label>
           <textarea id="companyAddress" rows="4" oninput="cacheData('companyAddress', this.value)"></textarea>
-        </div>
+        </div> -->
 
         <div>
           <label for="companyMobile">Mobile:</label>
@@ -29,8 +29,8 @@
         </div>
 
         <div>
-          <label for="companyFax">Fax / Ph:</label>
-          <input type="tel" id="companyFax" oninput="cacheData('companyFax', this.value)">
+          <label for="companyEmail">Email:</label>
+          <input type="email" id="companyEmail" oninput="cacheData('companyEmail', this.value)">
         </div>
       </div>
 
@@ -91,7 +91,12 @@
   <hr class="solid">
 
   <footer>
-    <p id="signature">Yours sincerely, <span contenteditable="true" oninput="cacheData('creatorName', this.innerText)"></span></p>
+    <p id="signature">Yours sincerely, 
+    </br>
+      <span contenteditable="true" oninput="cacheData('creatorName', this.innerText)">
+        Zoltan Ungvari
+      </span>
+    </p>
   </footer>
 
 </body>

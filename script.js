@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     dateInput.value = formattedDate;
 }
 
-  function cacheData(key, value) {
+  function cacheData(key, value, defaultValue) {
     try {
       if (key === 'logo' && value instanceof File) {
         return;
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   
       // Update related fields if needed
-      updateRelatedFields(key, value);
+      updateRelatedFields(key, value, defaultValue);
   
       // Recalculate when any data changes
       recalculate();
@@ -42,16 +42,28 @@ document.addEventListener('DOMContentLoaded', function () {
   function loadCachedData() {
     const cachedData = JSON.parse(localStorage.getItem('quotationData')) || {};
   
-    // Load all cached fields
-    Object.keys(cachedData).forEach(key => {
+    // Define default values
+    const defaultValues = {
+      companyName: 'GIDO PAINTING',
+      companyMobile: '0409618052',
+      companyEmail: 'GIDOPAINTING@hotmail.com',
+      fromCompany: 'GIDO PAINTING',
+      creatorName: 'Zoltan Ungvari' // Assuming 'creatorName' is the key for the signature content
+      // Add other default values as necessary
+    };
+  
+    // Load all cached fields or default values
+    Object.keys(defaultValues).forEach(key => {
       const element = document.getElementById(key);
       if (element) {
+        const value = cachedData[key] || defaultValues[key]; // Use cached value or default
+  
         if (key === 'logo') {
-            return;
+          // Skip logo or handle specifically if needed
         } else if (element.type === 'file') {
-          // Other file inputs
-          if (cachedData[key]) {
-            const file = dataURItoBlob(cachedData[key]);
+          // Handle file input
+          if (value) {
+            const file = dataURItoBlob(value);
             if (file) {
               const dataTransfer = new DataTransfer();
               dataTransfer.items.add(new File([file], key));
@@ -64,28 +76,24 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           }
         } else if (element.type === 'date') {
-            element.valueAsDate = new Date(cachedData[key]);
-        } else if (key === 'companyName') {
-            // Special case for date input
-            element.value = cachedData[key];
-            updateRelatedFields(key, element.value);
-          } else {
+          element.valueAsDate = value ? new Date(value) : new Date(); // Use current date if no cached value
+        } else {
           // General case for other input types
-          element.value = cachedData[key];
+          element.value = value;
+          if (key === 'companyName') {
+            updateRelatedFields(key, element.value);
+          }
         }
       }
     });
-  
-    // Recalculate on page load
-    recalculate();
-  }
+  }  
   
   function chooseLogo() {
     const input = document.getElementById('logo');
     input.click(); 
   }          
   
-  function updateRelatedFields(key, value) {
+  function updateRelatedFields(key, value, defaultValue) {
     if (key === 'companyName') {
         const companyNameField = document.getElementById('fromCompany');
         if (companyNameField) {
@@ -105,12 +113,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Create new position element
     const newPosition = document.createElement('div');
     newPosition.innerHTML = `
-      <label>Description:</label>
-      <input type="text" class="description" oninput="cacheData('positions', serializePositions())">
-      <label>Cost:</label>
-      <input type="number" class="cost" oninput="cacheData('positions', serializePositions())">
-      <button onclick="removeQuotationPosition(this)">Remove</button>
-    `;
+    <input type="text" class="description" placeholder="Enter details" oninput="cacheData('positions', serializePositions())">
+    <input type="number" class="cost" placeholder="Enter cost" oninput="cacheData('positions', serializePositions())">
+    <button onclick="removeQuotationPosition(this)">Remove</button>
+  `;  
   
     positionsContainer.appendChild(newPosition);
   
