@@ -114,6 +114,34 @@ hr.rounded {
   margin-right: 5px;
 }
 
+.position-container {
+  display: flex;
+  align-items: flex-start; /* Aligns items at the start of the container */
+  gap: 10px; /* Adds some space between the elements */
+}
+
+.position-description {
+  flex-grow: 1; /* Allows the description to take up the remaining space */
+}
+
+.position-description textarea {
+  width: 100%; /* Ensures the textarea takes the full width of its container */
+  resize: vertical; /* Allows vertical resizing only */
+  min-height: 50px; /* Sets a minimum height */
+}
+
+.position-cost {
+  display: flex; /* Aligns the cost input to the right */
+}
+
+.position-cost .cost {
+  width: 100px; /* Sets a fixed width for the cost input */
+}
+
+.remove-button {
+  margin-left: 10px; /* Adds some space between the cost input and the remove button */
+}
+
 @media print {
   /* Hide the logo input and make the logo display visible */
   #logo, .logo-section label {

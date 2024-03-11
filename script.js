@@ -112,17 +112,23 @@ document.addEventListener('DOMContentLoaded', function () {
   
     // Create new position element
     const newPosition = document.createElement('div');
+    newPosition.classList.add('position-container'); // Add a class for styling
     newPosition.innerHTML = `
-    <input type="text" class="description" placeholder="Enter details" oninput="cacheData('positions', serializePositions())">
-    <input type="number" class="cost" placeholder="Enter cost" oninput="cacheData('positions', serializePositions())">
-    <button onclick="removeQuotationPosition(this)">Remove</button>
-  `;  
+      <div class="position-description">
+        <textarea class="description" placeholder="Enter details" oninput="cacheData('positions', serializePositions())"></textarea>
+      </div>
+      <div class="position-cost">
+      <p>$</p>
+        <input type="number" class="cost" placeholder="Enter cost" oninput="cacheData('positions', serializePositions())">
+      </div>
+      <button class="remove-button" onclick="removeQuotationPosition(this)">Remove</button>
+    `;
   
     positionsContainer.appendChild(newPosition);
   
     // Recalculate when a position is added
     recalculate();
-  }
+  }  
   
   function removeQuotationPosition(button) {
     const positionElement = button.parentNode;
